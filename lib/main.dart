@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:prayers_app/views/qibla_view.dart';
+import 'package:prayers_app/views/prayers_view.dart';
 
 void main() {
   runApp(const PrayersApp());
@@ -46,7 +46,7 @@ class _PrayersAppState extends State<PrayersApp> {
       home: FutureBuilder(
         builder: (context, snapshot) {
           if (hasPermission) {
-            return const QiblahView();
+            return const HomeView();
           } else {
             return const Scaffold(
               backgroundColor: Color.fromARGB(255, 48, 48, 48),
