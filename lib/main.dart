@@ -3,6 +3,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:prayers_app/views/prayers_view.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const PrayersApp());
 }
 

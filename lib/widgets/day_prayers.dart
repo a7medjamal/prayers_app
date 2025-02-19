@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class PrayerCard extends StatelessWidget {
-  final String? text;
-  const PrayerCard({super.key, this.text});
+  final String? text, text2;
+  const PrayerCard({super.key, this.text, required this.text2});
 
   @override
   Widget build(BuildContext context) {
+    String formattedTime = _convertTo12Hour(text2 ?? '');
+
     return Container(
       width: 340,
       height: 60,
@@ -31,7 +34,7 @@ class PrayerCard extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              '00:00',
+              formattedTime,
               style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
@@ -42,5 +45,16 @@ class PrayerCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _convertTo12Hour(String time) {
+    try {
+      String cleanTime = time.replaceAll(RegExp(r'\(.*\)'), '').trim();
+      DateTime parsedTime = DateFormat("HH:mm").parse(cleanTime);
+      String formattedTime = DateFormat("hh : mm").format(parsedTime);
+      return formattedTime;
+    } catch (e) {
+      return time;
+    }
   }
 }
